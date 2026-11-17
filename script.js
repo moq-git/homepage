@@ -1,5 +1,5 @@
 /**
- * MØQ - Concepteur Pédagogique & Formateur Freelance
+ * MOQ - Concepteur Pédagogique & Formateur Freelance
  * JavaScript pour les animations et fonctionnalités
  */
 
@@ -248,7 +248,7 @@ function revealElements() {
 // Add reveal class to elements
 function initScrollReveal() {
     const animatedElements = document.querySelectorAll(
-        '.service-card, .portfolio-item, .testimonial, .skill, .stat, .contact-item'
+        '.service-card, .portfolio-item, .testimonial, .skill, .stat, .contact-item, .trust-logo'
     );
 
     animatedElements.forEach(element => {
