@@ -3,9 +3,7 @@
    Styles CSS - Thème Noir & Orange
    ============================================ */
 
-/* CSS Variables */
 :root {
-    /* Colors - Inspiré du logo (noir et orange) */
     --primary-color: #ff6b35;
     --primary-light: #f7931e;
     --primary-dark: #e55a2b;
@@ -17,33 +15,26 @@
     --bg-dark: #222;
     --white: #ffffff;
     --black: #000000;
-    --accent-color: #ffa500;
 
-    /* Typography */
     --font-primary: 'Poppins', sans-serif;
     --font-secondary: 'Quicksand', sans-serif;
 
-    /* Spacing */
     --section-padding: 100px 0;
     --container-width: 1200px;
 
-    /* Border Radius */
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
     --radius-xl: 20px;
 
-    /* Transitions */
     --transition-fast: 0.3s ease;
     --transition-normal: 0.5s ease;
 
-    /* Shadows */
     --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Reset & Base Styles */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -70,7 +61,6 @@ body {
     padding: 0 20px;
 }
 
-/* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
     font-weight: 600;
@@ -94,7 +84,6 @@ img {
     height: auto;
 }
 
-/* Highlight */
 .highlight {
     color: var(--primary-color);
 }
@@ -187,7 +176,7 @@ img {
 }
 
 /* ============================================
-   Hero Section - VERSION SUPER RESPONSIVE
+   Hero Section - AVEC SPHÈRES + ILLUSTRATION
    ============================================ */
 .hero {
     padding: 150px 0 100px;
@@ -238,20 +227,50 @@ img {
 
 .hero-illustration {
     position: relative;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 1/1;
+    width: 400px;
+    height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* 3 sphères orange */
+.illustration-element {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+}
+
+.illustration-element:nth-child(1) {
+    width: 120px;
+    height: 120px;
+    top: 20%;
+    left: 10%;
+    opacity: 0.8;
+}
+
+.illustration-element:nth-child(2) {
+    width: 180px;
+    height: 180px;
+    top: 40%;
+    right: 10%;
+    opacity: 0.6;
+}
+
+.illustration-element:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 20%;
+    opacity: 0.7;
+}
+
+/* Votre illustration PNG par-dessus les sphères */
 .hero-main-image {
-    width: 100%;
-    height: 100%;
-    max-width: 600px;
-    max-height: 600px;
+    position: relative;
+    z-index: 10;
+    max-width: 80%;
+    max-height: 80%;
     object-fit: contain;
     animation: float 6s ease-in-out infinite;
 }
@@ -1176,13 +1195,34 @@ img {
     }
 
     .hero-illustration {
-        max-width: 80%;
-        margin: 0 auto;
+        width: 350px;
+        height: 350px;
+    }
+
+    .illustration-element:nth-child(1) {
+        width: 100px;
+        height: 100px;
+        top: 15%;
+        left: 5%;
+    }
+
+    .illustration-element:nth-child(2) {
+        width: 150px;
+        height: 150px;
+        top: 35%;
+        right: 5%;
+    }
+
+    .illustration-element:nth-child(3) {
+        width: 80px;
+        height: 80px;
+        bottom: 15%;
+        left: 15%;
     }
 
     .hero-main-image {
-        max-width: 500px;
-        max-height: 500px;
+        max-width: 70%;
+        max-height: 70%;
     }
 
     .about-content,
@@ -1260,12 +1300,34 @@ img {
     }
 
     .hero-illustration {
-        max-width: 90%;
+        width: 300px;
+        height: 300px;
+    }
+
+    .illustration-element:nth-child(1) {
+        width: 80px;
+        height: 80px;
+        top: 10%;
+        left: 5%;
+    }
+
+    .illustration-element:nth-child(2) {
+        width: 120px;
+        height: 120px;
+        top: 30%;
+        right: 5%;
+    }
+
+    .illustration-element:nth-child(3) {
+        width: 60px;
+        height: 60px;
+        bottom: 10%;
+        left: 10%;
     }
 
     .hero-main-image {
-        max-width: 350px;
-        max-height: 350px;
+        max-width: 80%;
+        max-height: 80%;
     }
 
     .section-title {
@@ -1391,6 +1453,32 @@ img {
         height: 80px;
         padding: 15px;
     }
+
+    .hero-illustration {
+        width: 250px;
+        height: 250px;
+    }
+
+    .illustration-element:nth-child(1) {
+        width: 60px;
+        height: 60px;
+        top: 10%;
+        left: 5%;
+    }
+
+    .illustration-element:nth-child(2) {
+        width: 100px;
+        height: 100px;
+        top: 25%;
+        right: 5%;
+    }
+
+    .illustration-element:nth-child(3) {
+        width: 50px;
+        height: 50px;
+        bottom: 10%;
+        left: 10%;
+    }
 }
 
 /* ============================================
@@ -1440,7 +1528,6 @@ img {
     animation-delay: 0.4s;
 }
 
-/* Scroll Reveal */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -1452,7 +1539,6 @@ img {
     transform: translateY(0);
 }
 
-/* Loading Animation */
 @keyframes pulse {
     0%, 100% {
         opacity: 1;
