@@ -1,5 +1,5 @@
 /* ============================================
-   MØQ - Concepteur Pédagogique & Formateur Freelance
+   MOQ - Concepteur Pédagogique & Formateur Freelance
    Styles CSS - Thème Noir & Orange
    ============================================ */
 
@@ -131,46 +131,10 @@ img {
     align-items: flex-start;
 }
 
-.logo-text {
-    font-family: var(--font-primary);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--black);
-    letter-spacing: -1px;
-}
-
-.logo-o {
-    color: var(--primary-color);
-    position: relative;
-}
-
-.logo-o::after {
-    content: '';
-    position: absolute;
-    top: -5px;
-    right: -8px;
-    width: 8px;
-    height: 8px;
-    background-color: var(--primary-color);
-    border-radius: 50%;
-}
-
-.logo-o::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -8px;
-    width: 8px;
-    height: 8px;
-    background-color: var(--primary-color);
-    border-radius: 50%;
-}
-
-.logo-subtitle {
-    font-family: var(--font-secondary);
-    font-size: 0.8rem;
-    color: var(--text-light);
-    margin-top: 2px;
+.logo img {
+    height: 40px;
+    width: auto;
+    display: block;
 }
 
 /* Navigation */
@@ -275,36 +239,26 @@ img {
     position: relative;
     width: 400px;
     height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.illustration-element {
-    position: absolute;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+.hero-main-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    animation: float 6s ease-in-out infinite;
 }
 
-.illustration-element:nth-child(1) {
-    width: 120px;
-    height: 120px;
-    top: 20%;
-    left: 10%;
-    opacity: 0.8;
-}
-
-.illustration-element:nth-child(2) {
-    width: 180px;
-    height: 180px;
-    top: 40%;
-    right: 10%;
-    opacity: 0.6;
-}
-
-.illustration-element:nth-child(3) {
-    width: 100px;
-    height: 100px;
-    bottom: 20%;
-    left: 20%;
-    opacity: 0.7;
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
 .scroll-down {
@@ -499,6 +453,62 @@ img {
 .service-features i {
     color: var(--primary-color);
     font-size: 0.9rem;
+}
+
+/* ============================================
+   Trust Section
+   ============================================ */
+.trust {
+    background-color: var(--white);
+    padding: 80px 0;
+}
+
+.trust .section-header {
+    margin-bottom: 50px;
+}
+
+.trust-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.trust-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background-color: var(--bg-light);
+    border-radius: var(--radius-lg);
+    transition: var(--transition-fast);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-width: 200px;
+    height: 120px;
+}
+
+.trust-logo:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    background-color: var(--primary-light);
+    border-color: var(--primary-color);
+}
+
+.trust-logo img {
+    max-height: 50px;
+    max-width: 150px;
+    width: auto;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: var(--transition-fast);
+}
+
+.trust-logo:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
 }
 
 /* ============================================
@@ -1009,17 +1019,10 @@ img {
     margin-bottom: 20px;
 }
 
-.footer-section .logo-text {
-    color: var(--white);
-}
-
-.footer-section .logo-o {
-    color: var(--primary-color);
-}
-
-.footer-section .logo-o::after,
-.footer-section .logo-o::before {
-    background-color: var(--primary-color);
+.footer-section .logo img {
+    height: 40px;
+    width: auto;
+    display: block;
 }
 
 .footer-section .logo-subtitle {
@@ -1170,6 +1173,15 @@ img {
         order: -1;
     }
 
+    .hero-illustration {
+        width: 350px;
+        height: 350px;
+    }
+
+    .hero-main-image {
+        max-height: 300px;
+    }
+
     .about-content,
     .contact-content {
         grid-template-columns: 1fr;
@@ -1191,6 +1203,15 @@ img {
 
     .testimonial {
         flex: 0 0 calc(50% - 30px);
+    }
+
+    .trust-logos {
+        gap: 40px;
+    }
+
+    .trust-logo {
+        min-width: 160px;
+        height: 100px;
     }
 }
 
@@ -1240,6 +1261,10 @@ img {
         height: 300px;
     }
 
+    .hero-main-image {
+        max-height: 250px;
+    }
+
     .section-title {
         font-size: 2rem;
     }
@@ -1279,11 +1304,21 @@ img {
     .footer-legal {
         justify-content: center;
     }
+
+    .trust-logos {
+        gap: 30px;
+    }
+
+    .trust-logo {
+        min-width: 140px;
+        height: 90px;
+        padding: 20px;
+    }
 }
 
 @media (max-width: 480px) {
-    .logo-text {
-        font-size: 1.5rem;
+    .logo img {
+        height: 35px;
     }
 
     .hero-title {
@@ -1346,6 +1381,12 @@ img {
         order: -1;
         width: 100%;
         justify-content: center;
+    }
+
+    .trust-logo {
+        min-width: 120px;
+        height: 80px;
+        padding: 15px;
     }
 }
 
