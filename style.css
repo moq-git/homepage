@@ -187,8 +187,15 @@ img {
 }
 
 /* ============================================
-   Hero Illustration - VERSION RESPONSIVE
+   Hero Illustration - VERSION SUPER RESPONSIVE
    ============================================ */
+.hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
 .hero-image {
     display: flex;
     justify-content: center;
@@ -199,8 +206,9 @@ img {
 .hero-illustration {
     position: relative;
     width: 100%;
-    max-width: 600px;  /* Taille max sur grand écran */
-    height: 400px;
+    max-width: 100%; /* Prend toute la largeur disponible */
+    height: auto;
+    aspect-ratio: 1/1; /* Ratio carré (ajustez si votre image est rectangle) */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -208,8 +216,9 @@ img {
 
 .hero-main-image {
     width: 100%;
-    height: auto;
-    max-height: 400px;
+    height: 100%;
+    max-width: 600px; /* Limite max sur grand écran */
+    max-height: 600px; /* Limite max sur grand écran */
     object-fit: contain;
     animation: float 6s ease-in-out infinite;
 }
@@ -226,40 +235,41 @@ img {
 
 /* Responsive pour tablette et mobile */
 @media (max-width: 1024px) {
+    .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
     .hero-illustration {
-        max-width: 450px;
-        height: 350px;
+        max-width: 80%;
+        margin: 0 auto;
     }
     .hero-main-image {
-        max-height: 350px;
+        max-width: 500px;
+        max-height: 500px;
+    }
+    .hero-image {
+        order: -1;
+        margin-bottom: 40px;
     }
 }
 
 @media (max-width: 768px) {
     .hero-illustration {
-    width: 100%;
-    max-width: 800px;  /* Limite max pour éviter qu'elle soit trop grande */
-    height: auto;
-    aspect-ratio: 1/1;  /* Carré (ajustez selon votre image) */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-main-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    animation: float 6s ease-in-out infinite;
+        max-width: 90%;
+    }
+    .hero-main-image {
+        max-width: 350px;
+        max-height: 350px;
+    }
 }
 
 @media (max-width: 480px) {
     .hero-illustration {
-        max-width: 280px;
-        height: 220px;
+        max-width: 100%;
     }
     .hero-main-image {
-        max-height: 220px;
+        max-width: 300px;
+        max-height: 300px;
     }
 }
 
