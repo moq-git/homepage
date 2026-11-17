@@ -1,6 +1,6 @@
 /**
  * MOQ Formation - Script JavaScript Complet
- * Gère : Menu mobile, filtres portfolio, slider témoignages, animations, back-to-top
+ * Gère : Menu mobile, filtres portfolio, slider témoignages (4 dots), animations, back-to-top
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,33 +12,37 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
 
     // Toggle menu mobile
-    navToggle.addEventListener('click', function() {
-        navList.classList.toggle('active');
-        navToggle.classList.toggle('active');
-    });
-
-    // Fermer le menu quand on clique sur un lien
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navList.classList.remove('active');
-            navToggle.classList.remove('active');
+    if (navToggle && navList) {
+        navToggle.addEventListener('click', function() {
+            navList.classList.toggle('active');
+            navToggle.classList.toggle('active');
         });
-    });
+
+        // Fermer le menu quand on clique sur un lien
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navList.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+    }
 
     // ============================================
     // 2. HEADER SCROLL EFFECT
     // ============================================
     const header = document.querySelector('.header');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+    if (header) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
 
     // ============================================
-    // 3. SMOOTH SCROLLING (pour tous les liens ancres)
+    // 3. SMOOTH SCROLLING
     // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -48,10 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (targetElement) {
                 // Fermer le menu mobile si ouvert
-                navList.classList.remove('active');
-                navToggle.classList.remove('active');
+                if (navList) navList.classList.remove('active');
+                if (navToggle) navToggle.classList.remove('active');
 
-                // Scroll fluide (offset pour le header fixe)
+                // Scroll fluide avec offset pour le header fixe
                 const headerOffset = 80;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -61,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth'
                 });
 
-                // Mettre à jour l'onglet actif dans la navigation
+                // Mettre à jour l'onglet actif
                 updateActiveNavLink(targetId);
             }
         });
@@ -69,12 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mettre à jour le lien actif dans la navigation
     function updateActiveNavLink(targetId) {
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === targetId) {
-                link.classList.add('active');
-            }
-        });
+        if (navLinks) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === targetId) {
+                    link.classList.add('active');
+                }
+            });
+        }
     }
 
     // Mettre à jour le lien actif au scroll
@@ -82,20 +88,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollPosition = window.scrollY + 100;
         const sections = document.querySelectorAll('section[id]');
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = `#${section.getAttribute('id')}`;
+        if (sections.length > 0 && navLinks.length > 0) {
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = `#${section.getAttribute('id')}`;
 
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === sectionId) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === sectionId) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
     });
 
     // ============================================
@@ -104,28 +112,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Mettre à jour le bouton actif
-            filterBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
+    if (filterBtns.length > 0 && portfolioItems.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Mettre à jour le bouton actif
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
 
-            const filter = this.getAttribute('data-filter');
+                const filter = this.getAttribute('data-filter');
 
-            // Filtrer les items
-            portfolioItems.forEach(item => {
-                if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                    item.style.display = 'block';
-                    item.classList.add('animate-fade-in-up');
-                } else {
-                    item.style.display = 'none';
-                }
+                // Filtrer les items
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        item.classList.add('animate-fade-in-up');
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
             });
         });
-    });
+    }
 
     // ============================================
-    // 5. TESTIMONIALS SLIDER
+    // 5. TESTIMONIALS SLIDER - AVEC 4 DOTS
     // ============================================
     const slider = document.querySelector('.testimonials-slider');
     const testimonials = document.querySelectorAll('.testimonial');
@@ -134,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const dots = document.querySelectorAll('.dot');
 
     let currentIndex = 0;
-    const totalTestimonials = testimonials.length;
+    const totalTestimonials = testimonials.length; // 4 témoignages
 
     // Fonction pour aller à un testimonial spécifique
     function goToTestimonial(index) {
@@ -144,70 +154,85 @@ document.addEventListener('DOMContentLoaded', function() {
         currentIndex = index;
 
         // Calculer la position de scroll
-        const testimonialWidth = testimonials[0].offsetWidth;
+        const testimonialWidth = testimonials[0] ? testimonials[0].offsetWidth : 300;
         const gap = 30; // Espacement entre les testimonials
         const scrollPosition = index * (testimonialWidth + gap);
 
-        slider.scrollTo({
-            left: scrollPosition,
-            behavior: 'smooth'
-        });
+        if (slider) {
+            slider.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+        }
 
-        // Mettre à jour les dots
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
+        // Mettre à jour les dots (4 dots pour 4 témoignages)
+        if (dots.length >= totalTestimonials) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
     }
 
     // Boutons précédent/suivant
-    prevBtn.addEventListener('click', () => goToTestimonial(currentIndex - 1));
-    nextBtn.addEventListener('click', () => goToTestimonial(currentIndex + 1));
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => goToTestimonial(currentIndex - 1));
+        nextBtn.addEventListener('click', () => goToTestimonial(currentIndex + 1));
+    }
 
-    // Clic sur les dots
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => goToTestimonial(index));
-    });
+    // Clic sur les dots (4 dots)
+    if (dots.length > 0) {
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => goToTestimonial(index));
+        });
+    }
 
     // Auto-advance du slider (toutes les 5 secondes)
-    let sliderInterval = setInterval(() => {
-        goToTestimonial(currentIndex + 1);
-    }, 5000);
-
-    // Pause au survol
-    slider.addEventListener('mouseenter', () => {
-        clearInterval(sliderInterval);
-    });
-
-    slider.addEventListener('mouseleave', () => {
+    let sliderInterval;
+    if (totalTestimonials > 1) {
         sliderInterval = setInterval(() => {
             goToTestimonial(currentIndex + 1);
         }, 5000);
-    });
+
+        // Pause au survol
+        if (slider) {
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(sliderInterval);
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                sliderInterval = setInterval(() => {
+                    goToTestimonial(currentIndex + 1);
+                }, 5000);
+            });
+        }
+    }
 
     // ============================================
     // 6. BACK TO TOP BUTTON
     // ============================================
     const backToTopBtn = document.querySelector('.back-to-top');
 
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 500) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
-        }
-    });
-
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (backToTopBtn) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
         });
-    });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
     // ============================================
     // 7. SCROLL REVEAL ANIMATIONS
     // ============================================
-    const revealElements = document.querySelectorAll('.reveal, .service-card, .portfolio-item, .testimonial, .skill, .stat, .contact-item, .trust-logo');
+    const revealElements = document.querySelectorAll('.reveal, .service-card, .portfolio-item, .testimonial, .skill, .stat, .contact-item, .trust-logo, .hero-logo, .hero-main-image, .illustration-element');
 
     function revealOnScroll() {
         revealElements.forEach(element => {
@@ -273,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Si tout est OK (en vrai, il faudrait envoyer les données à un serveur)
+            // Si tout est OK
             alert('Merci pour votre message ! Je vous répondrai dans les plus brefs délais.');
             contactForm.reset();
         });
@@ -287,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
         goToTestimonial(currentIndex);
 
         // Pour les écrans mobiles, forcer le display block sur tous les portfolio items
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 768 && portfolioItems.length > 0) {
             portfolioItems.forEach(item => {
                 item.style.display = 'block';
             });
