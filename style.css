@@ -210,11 +210,11 @@ img {
 /* LOGO DANS L'ACCUEIL */
 .hero-logo {
     margin: 20px 0;
-    text-align: center;
+    text-align: left;
 }
 
 .hero-logo-img {
-    height: 80px;
+    height: 100px;
     width: auto;
     max-width: 200px;
 }
@@ -281,8 +281,8 @@ img {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
+    width: 150%;
+    height: 150%;
     object-fit: contain;
     z-index: 10;
 }
