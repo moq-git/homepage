@@ -1,6 +1,6 @@
 /* ============================================
    MOQ - Concepteur Pédagogique & Formateur Freelance
-   Styles CSS - VERSION FINALE AVEC LOGOS DANS TÉMOIGNAGES
+   Styles CSS - VERSION FINALE COMPLÈTE
    ============================================ */
 
 :root {
@@ -35,7 +35,9 @@
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Reset & Base */
+/* ============================================
+   RESET & BASE
+   ============================================ */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -89,7 +91,9 @@ img {
     color: var(--primary-color);
 }
 
-/* Header */
+/* ============================================
+   HEADER
+   ============================================ */
 .header {
     position: fixed;
     top: 0;
@@ -169,7 +173,7 @@ img {
 }
 
 /* ============================================
-   Hero Section - LOGO AU-DESSUS + ILLUSTRATION
+   HERO SECTION - LOGO + SPHÈRES + ILLUSTRATION
    ============================================ */
 .hero {
     padding: 150px 0;
@@ -321,7 +325,9 @@ img {
     }
 }
 
-/* Buttons */
+/* ============================================
+   BUTTONS
+   ============================================ */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -372,7 +378,9 @@ img {
     color: var(--white);
 }
 
-/* Sections */
+/* ============================================
+   SECTIONS
+   ============================================ */
 .section {
     padding: var(--section-padding);
 }
@@ -409,7 +417,9 @@ img {
     line-height: 1.7;
 }
 
-/* Services */
+/* ============================================
+   SERVICES SECTION
+   ============================================ */
 .services {
     background-color: var(--bg-light);
 }
@@ -479,7 +489,9 @@ img {
     font-size: 0.9rem;
 }
 
-/* Trust Section */
+/* ============================================
+   TRUST SECTION
+   ============================================ */
 .trust {
     background-color: var(--white);
     padding: 80px 0;
@@ -533,7 +545,9 @@ img {
     transform: scale(1.05);
 }
 
-/* Portfolio */
+/* ============================================
+   PORTFOLIO SECTION
+   ============================================ */
 .portfolio {
     background-color: var(--white);
 }
@@ -629,7 +643,9 @@ img {
     line-height: 1.6;
 }
 
-/* About */
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
 .about {
     background-color: var(--bg-light);
 }
@@ -726,7 +742,7 @@ img {
 }
 
 /* ============================================
-   Testimonials - AVEC LOGOS
+   TESTIMONIALS SECTION - AVEC 4 LOGOS
    ============================================ */
 .testimonials {
     background-color: var(--white);
@@ -746,7 +762,7 @@ img {
 }
 
 .testimonial {
-    flex: 0 0 calc(33.333% - 30px);
+    flex: 0 0 calc(25% - 22.5px); /* 4 témoignages = 25% chacun */
     min-width: 300px;
     scroll-snap-align: start;
     background-color: var(--bg-light);
@@ -788,7 +804,7 @@ img {
     color: var(--white);
 }
 
-/* NOUVEAU : Logos sous les citations */
+/* Logos sous les citations */
 .testimonial-author {
     display: flex;
     align-items: center;
@@ -902,7 +918,9 @@ img {
     width: 30px;
 }
 
-/* Contact */
+/* ============================================
+   CONTACT SECTION
+   ============================================ */
 .contact {
     background-color: var(--bg-light);
 }
@@ -1043,7 +1061,9 @@ img {
     margin-top: 10px;
 }
 
-/* Footer */
+/* ============================================
+   FOOTER
+   ============================================ */
 .footer {
     background-color: var(--black);
     color: var(--white);
@@ -1149,7 +1169,9 @@ img {
     color: var(--primary-color);
 }
 
-/* Back to Top */
+/* ============================================
+   BACK TO TOP BUTTON
+   ============================================ */
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -1180,7 +1202,15 @@ img {
     transform: translateY(-3px);
 }
 
-/* Responsive */
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1200px) {
+    .testimonial {
+        flex: 0 0 calc(33.333% - 22.5px); /* 3 témoignages visibles */
+    }
+}
+
 @media (max-width: 1024px) {
     .hero .container {
         grid-template-columns: 1fr;
@@ -1260,7 +1290,7 @@ img {
     }
 
     .testimonial {
-        flex: 0 0 calc(50% - 30px);
+        flex: 0 0 calc(50% - 30px); /* 2 témoignages visibles */
     }
 
     .trust-logos {
@@ -1371,7 +1401,7 @@ img {
     }
 
     .testimonial {
-        flex: 0 0 100%;
+        flex: 0 0 100%; /* 1 témoignage visible */
     }
 
     .about-stats {
@@ -1512,14 +1542,15 @@ img {
         height: 60px;
     }
 
-    /* Adaptation des logos dans les témoignages pour mobile */
     .author-logo {
         width: 50px;
         height: 50px;
     }
 }
 
-/* Animations */
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 @keyframes fadeInUp {
     from {
         opacity: 0;
